@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MerryMart - Christmas Online Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --red: #d62828;
+            --green: #2a9d3e;
+            --gold: #e9c46a;
+            --dark-green: #1e6b2f;
+            --white: #ffffff;
+            --light-bg: #f8f9fa;
+            --dark-red: #a31b1b;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f9f0;
+            color: #333;
+            line-height: 1.6;
+            background-image: radial-gradient(#d62828 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--red);
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2.2rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .logo i {
+            color: var(--gold);
+            font-size: 2rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        
+        nav a:hover {
+            color: var(--gold);
+        }
+        
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: var(--gold);
+            color: var(--dark-red);
+            font-size: 0.8rem;
+            font-weight: bold;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 157, 62, 0.85), rgba(42, 157, 62, 0.9)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 8px solid var(--red);
+        }
+        
+        .hero h2 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--red);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--dark-red);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Products Section */
+        .products-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2.8rem;
+            color: var(--dark-green);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--red);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .product-img {
+            height: 200px;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-green);
+            font-size: 3.5rem;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark-green);
+        }
+        
+        .product-desc {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+        
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--red);
+            margin-bottom: 15px;
+        }
+        
+        .add-to-cart {
+            width: 100%;
+            padding: 10px;
+            background-color: var(--green);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--dark-green);
+        }
+        
+        /* Cart Modal */
+        .cart-modal {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 380px;
+            height: 100%;
+            background-color: var(--white);
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            transition: right 0.4s ease;
+            z-index: 1000;
+            padding: 25px;
+            overflow-y: auto;
+        }
+        
+        .cart-modal.open {
+            right: 0;
+        }
+        
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #eee;
+        }
+        
+        .cart-header h3 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 2rem;
+            color: var(--dark-green);
+        }
+        
+        .close-cart {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #777;
+        }
+        
+        .cart-items {
+            margin-bottom: 30px;
+        }
+        
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .cart-item-img {
+            width: 60px;
+            height: 60px;
+            background-color: var(--light-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+            margin-right: 15px;
+            color: var(--dark-green);
+            font-size: 1.5rem;
+        }
+        
+        .cart-item-info {
+            flex: 1;
+        }
+        
+        .cart-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .cart-item-price {
+            color: var(--red);
+            font-weight: 700;
+        }
+        
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #eee;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .remove-item {
+            color: #ff6b6b;
+            background: none;
+            border: none;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark-green);
+            text-align: right;
+            margin-bottom: 25px;
+            padding-top: 15px;
+            border-top: 2px solid #eee;
+        }
+        
+        .checkout-btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-green);
+            color: var(--white);
+            padding: 50px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+        
+        .footer-section p {
+            margin-bottom: 15px;
+        }
+        
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-icons a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h2 {
+                font-size: 2.8rem;
+            }
+            
+            .section-title {
+                font-size: 2.4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            nav ul {
+                gap: 15px;
+            }
+            
+            .cart-modal {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .hero {
+                padding: 60px 0;
+            }
+            
+            .hero h2 {
+                font-size: 2.3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background-color: var(--green);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s;
+            z-index: 1001;
+        }
+        
+        .notification.show {
+            transform: translateX(-50%) translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-gift"></i>
+                    <h1>MerryMart</h1>
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#products">Products</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                <div class="cart-icon" id="cartIcon">
+                    <i class="fas fa-shopping-cart fa-2x" style="color: white;"></i>
+                    <div class="cart-count" id="cartCount">0</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h2>Merry Christmas & Happy Holidays!</h2>
+            <p>Discover the perfect gifts, decorations, and treats for a magical Christmas season. Order online and get free delivery on orders over $50!</p>
+            <a href="#products" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <div class="container">
+            <h2 class="section-title">Christmas Collection</h2>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be generated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="close-cart" id="closeCart">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be added here by JavaScript -->
+            <p id="emptyCartMessage" style="text-align: center; color: #777;">Your cart is empty</p>
+        </div>
+        <div class="cart-total">
+            Total: $<span id="cartTotal">0.00</span>
+        </div>
+        <button class="btn checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MerryMart</h3>
+                    <p>Bringing Christmas joy to your doorstep since<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOCAL BOY DELIVERY - Village Food Delivery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-motorcycle"></i>
+                <h1>LOCAL BOY DELIVERY</h1>
+                <span class="tagline">Village Fresh, Village Fast</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#restaurants">Restaurants</a>
+                <a href="#groceries">Groceries</a>
+                <a href="#about">About</a>
+            </div>
+            
+            <div class="cart-icon" onclick="toggleCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2>From Local Kitchens to Your Doorstep</h2>
+            <p>Order food from your favorite village restaurants and local shops</p>
+            <div class="delivery-info">
+                <div class="info-item">
+                    <i class="fas fa-clock"></i>
+                    <span>30-45 min delivery</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-rupee-sign"></i>
+                    <span>No delivery charge</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search for restaurants or items..." id="searchInput">
+                <button onclick="searchItems()">Search</button>
+            </div>
+            
+            <div class="categories">
+                <h3>Popular Categories</h3>
+                <div class="category-list">
+                    <div class="category-item" onclick="filterCategory('veg')">
+                        <i class="fas fa-leaf"></i>
+                        <span>Veg Meals</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('nonveg')">
+                        <i class="fas fa-drumstick-bite"></i>
+                        <span>Non-Veg</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('snacks')">
+                        <i class="fas fa-cookie-bite"></i>
+                        <span>Snacks</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('sweets')">
+                        <i class="fas fa-birthday-cake"></i>
+                        <span>Sweets</span>
+                    </div>
+                    <div class="category-item" onclick="filterCategory('groceries')">
+                        <i class="fas fa-shopping-basket"></i>
+                        <span>Groceries</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Restaurants/Food Items -->
+    <section class="food-items" id="restaurants">
+        <div class="container">
+            <h2>Available Restaurants & Shops</h2>
+            <div class="restaurant-list">
+                <!-- Restaurant 1 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-header">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Anand Bhojanalay">
+                        <div class="restaurant-info">
+                            <h3>Anand Bhojanalay</h3>
+                            <div class="rating">
+                                <span class="stars">★★★★☆</span>
+                                <span>4.2 • 30-35 mins</span>
+                            </div>
+                            <p>Traditional village thali & snacks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-items">
+                        <!-- Item 1 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Village Thali (Veg)</h4>
+                                <p>Rice, 2 roti, dal, 2 vegetables, salad, pickle</p>
+                                <span class="price">₹80</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Village Thali (Veg)', 80)">
+                                ADD
+                            </button>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Special Chicken Curry</h4>
+                                <p>Spicy village style chicken with gravy</p>
+                                <span class="price">₹120</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Special Chicken Curry', 120)">
+                                ADD
+                            </button>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Paneer Butter Masala</h4>
+                                <p>Cottage cheese in rich creamy gravy</p>
+                                <span class="price">₹100</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Paneer Butter Masala', 100)">
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant 2 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-header">
+                        <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Chai & Snacks Corner">
+                        <div class="restaurant-info">
+                            <h3>Chai & Snacks Corner</h3>
+                            <div class="rating">
+                                <span class="stars">★★★★☆</span>
+                                <span>4.0 • 20-25 mins</span>
+                            </div>
+                            <p>Tea, coffee, and evening snacks</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-items">
+                        <!-- Item 1 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Masala Chai</h4>
+                                <p>Traditional village style tea</p>
+                                <span class="price">₹10</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Masala Chai', 10)">
+                                ADD
+                            </button>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Samosa (2 pcs)</h4>
+                                <p>Crispy potato filled samosas</p>
+                                <span class="price">₹20</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Samosa (2 pcs)', 20)">
+                                ADD
+                            </button>
+                        </div>
+                        
+                        <!-- Item 3 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Bread Pakora</h4>
+                                <p>4 pieces with chutney</p>
+                                <span class="price">₹30</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Bread Pakora', 30)">
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Restaurant 3 -->
+                <div class="restaurant-card">
+                    <div class="restaurant-header">
+                        <img src="https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" alt="Mithai Ghar">
+                        <div class="restaurant-info">
+                            <h3>Mithai Ghar</h3>
+                            <div class="rating">
+                                <span class="stars">★★★★★</span>
+                                <span>4.5 • 25-30 mins</span>
+                            </div>
+                            <p>Traditional sweets and desserts</p>
+                        </div>
+                    </div>
+                    
+                    <div class="menu-items">
+                        <!-- Item 1 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Gulab Jamun (250g)</h4>
+                                <p>Fresh homemade gulab jamun</p>
+                                <span class="price">₹60</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Gulab Jamun (250g)', 60)">
+                                ADD
+                            </button>
+                        </div>
+                        
+                        <!-- Item 2 -->
+                        <div class="menu-item">
+                            <div class="item-details">
+                                <h4>Rasgulla (250g)</h4>
+                                <p>Soft and juicy rasgulla</p>
+                                <span class="price">₹50</span>
+                            </div>
+                            <button class="add-btn" onclick="addToCart('Rasgulla (250g)', 50)">
+                                ADD
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h3>Your Order</h3>
+                <button class="close-cart" onclick="toggleCart()">&times;</button>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be added here dynamically -->
+                <div class="empty-cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <p>Your cart is empty</p>
+                    <p>Add items from restaurants</p>
+                </div>
+            </div>
+            
+            <div class="cart-summary">
+                <div class="bill-details">
+                    <div class="bill-row">
+                        <span>Item Total</span>
+                        <span id="itemTotal">₹0</span>
+                    </div>
+                    <div class="bill-row">
+                        <span>Delivery Charge</span>
+                        <span>FREE</span>
+                    </div>
+                    <div class="bill-row total">
+                        <span>To Pay</span>
+                        <span id="totalAmount">₹0</span>
+                    </div>
+                </div>
+                
+                <button class="checkout-btn" onclick="checkout()" id="checkoutBtn" disabled>
+                    <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div class="checkout-modal" id="checkoutModal">
+        <div class="checkout-content">
+            <div class="checkout-header">
+                <h3>Complete Your Order</h3>
+                <button class="close-checkout" onclick="closeCheckout()">&times;</button>
+            </div>
+            
+            <div class="customer-form">
+                <div class="form-group">
+                    <label for="customerName">Your Name *</label>
+                    <input type="text" id="customerName" placeholder="Enter your name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="customerPhone">Phone Number *</label>
+                    <input type="tel" id="customerPhone" placeholder="Enter 10-digit phone number">
+                </div>
+                
+                <div class="form-group">
+                    <label for="deliveryAddress">Delivery Address *</label>
+                    <textarea id="deliveryAddress" rows="3" placeholder="Enter complete address with landmarks"></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialInstructions">Special Instructions (Optional)</label>
+                    <textarea id="specialInstructions" rows="2" placeholder="Any special requests?"></textarea>
+                </div>
+                
+                <button class="confirm-order-btn" onclick="sendWhatsAppOrder()">
+                    <i class="fab fa-whatsapp"></i> Send Order on WhatsApp
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>LOCAL BOY DELIVERY</h4>
+                <p>Serving our village with love and care</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone"></i> 87621 67849</p>
+                    <p><i class="fas fa-clock"></i> 8:00 AM - 10:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#restaurants">Order Food</a>
+                <a href="#groceries">Groceries</a>
+                <a href="#about">About Us</a>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 LOCAL BOY DELIVERY. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(255, 107, 107, 0.2);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+}
+
+.logo i {
+    font-size: 2rem;
+}
+
+.logo h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.tagline {
+    font-size: 0.8rem;
+    opacity: 0.9;
+    margin-left: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.nav-links a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    color: white;
+    font-size: 1.5rem;
+    padding: 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.cart-icon:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.cart-count {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #FFD700;
+    color: #333;
+    font-size: 0.8rem;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+/* Hero Section */
+.hero {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                url('https://images.unsplash.com/photo-1521302080330-2e2e1d2b1b1f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    opacity: 0.9;
+}
+
+.delivery-info {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+.info-item i {
+    color: #FFD700;
+    font-size: 1.5rem;
+}
+
+/* Search Section */
+.search-section {
+    padding: 40px 20px;
+    background: white;
+    margin-top: -50px;
+    border-radius: 20px 20px 0 0;
+    position: relative;
+    z-index: 100;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 2px solid #FF6B6B;
+    border-radius: 50px;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 20px rgba(255, 107, 107, 0.1);
+}
+
+.search-box i {
+    color: #FF6B6B;
+    font-size: 1.2rem;
+    margin-right: 10px;
+}
+
+.search-box input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    padding: 10px;
+}
+
+.search-box button {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.search-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.categories h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.category-list {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+    background: white;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 120px;
+    border: 2px solid transparent;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+    border-color: #FF6B6B;
+    box-shadow: 0 5px 20px rgba(255, 107, 107, 0.2);
+}
+
+.category-item i {
+    font-size: 2rem;
+    color: #FF6B6B;
+    margin-bottom: 10px;
+}
+
+.category-item span {
+    font-weight: 500;
+    color: #333;
+}
+
+/* Food Items Section */
+.food-items {
+    padding: 40px 20px;
+}
+
+.food-items h2 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.restaurant-list {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.restaurant-card {
+    background: white;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.restaurant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.restaurant-header {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.restaurant-header img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-right: 20px;
+}
+
+.restaurant-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.stars {
+    color: #FFD700;
+}
+
+.menu-items {
+    padding: 20px;
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.item-details h4 {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.item-details p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+.price {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #FF6B6B;
+}
+
+.add-btn {
+    background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+    color: white;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.add-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 10px rgba(255, 107, 107, 0.3);
+}
+
+/* Cart Modal */
+.cart-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+}
+
+.cart-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 100%;
+    background: white;
+    padding: 20px;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+.cart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.cart-header h3 {
+    color: #333;
+}
+
+.close-cart {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+    transition: all 0.3s ease;
+}
+
+.close-cart:hover {
+    color: #FF6B6B;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 50px 20px;
+    color: #999;
+}
+
+.empty-cart i {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #ddd;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.cart-item-info h4 {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.cart-item-price {
+    color: #FF6B6B;
+    font-weight: 600;
+}
+
+.cart-item-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    background: #FF6B6B;
+    color: white;
+    border: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.remove-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+
+.cart-summary {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.bill-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.bill-row.total {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.checkout-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Checkout Modal */
+.checkout-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkout-content {
+    background: white;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    padding: 30px;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.close-checkout {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #333;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #FF6B6B;
+}
+
+.confirm-order-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.confirm-order-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    padding: 40px 20px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-section h4 {
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    color: #FFD700;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    opacity: 0.9;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.footer-section a {
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin-bottom: 10px;
+    opacity: 0.9;
+    transition: all 0.3s ease;
+}
+
+.footer-section a:hover {
+    opacity: 1;
+    color: #FFD700;
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    background: #25D366;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 0.8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        gap: 15px;
+    }
+    
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+    
+    .delivery-info {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .restaurant-header {
+        flex-direction: column;
+    }
+    
+    .restaurant-header img {
+        width: 100%;
+        height: 200px;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+    
+    .cart-content {
+        max-width: 100%;
+    }
+    
+    .category-list {
+        gap: 10px;
+    }
+    
+    .category-item {
+        min-width: 100px;
+        padding: 10px 15px;
+    }
+}// WhatsApp number (you can change this)
+const WHATSAPP_NUMBER = '8762167849';
+
+// Cart data
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let cartTotal = 0;
+
+// Initialize cart display
+function updateCartDisplay() {
+    const cartItemsContainer = document.getElementById('cartItems');
+    const cartCount = document.querySelector('.cart-count');
+    const itemTotal = document.getElementById('itemTotal');
+    const totalAmount = document.getElementById('totalAmount');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+    
+    // Update cart count
+    cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Update cart items display
+    if (cart.length === 0) {
+        cartItemsContainer.innerHTML = `
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart"></i>
+                <p>Your cart is empty</p>
+                <p>Add items from restaurants</p>
+            </div>
+        `;
+        checkoutBtn.disabled = true;
+        itemTotal.textContent = '₹0';
+        totalAmount.textContent = '₹0';
+        cartTotal = 0;
+    } else {
+        cartItemsContainer.innerHTML = '';
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p class="cart-item-price">₹${item.price} × ${item.quantity}</p>
+                </div>
+                <div class="cart-item-controls">
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity - 1})">-</button>
+                    <span>${item.quantity}</span>
+                    <button class="quantity-btn" onclick="updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                </div>
+            `;
+            cartItemsContainer.appendChild(cartItem);
+        });
+        
+        checkoutBtn.disabled = false;
+        itemTotal.textContent = `₹${total}`;
+        totalAmount.textContent = `₹${total}`;
+        cartTotal = total;
+    }
+    
+    // Save cart to localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+// Add item to cart
+function addToCart(itemName, itemPrice) {
+    // Check if item already exists in cart
+    const existingItemIndex = cart.findIndex(item => item.name === itemName);
+    
+    if (existingItemIndex > -1) {
+        // Increase quantity if item exists
+        cart[existingItemIndex].quantity += 1;
+    } else {
+        // Add new item to cart
+        cart.push({
+            name: itemName,
+            price: itemPrice,
+            quantity: 1
+        });
+    }
+    
+    updateCartDisplay();
+    
+    // Show notification
+    showNotification(`${itemName} added to cart!`);
+    
+    // Open cart automatically if this is the first item
+    if (cart.length === 1) {
+        toggleCart();
+    }
+}
+
+// Update item quantity
+function updateQuantity(index, newQuantity) {
+    if (newQuantity < 1) {
+        removeFromCart(index);
+        return;
+    }
+    
+    cart[index].quantity = newQuantity;
+    updateCartDisplay();
+}
+
+// Remove item from cart
+function removeFromCart(index) {
+    const itemName = cart[index].name;
+    cart.splice(index, 1);
+    updateCartDisplay();
+    showNotification(`${itemName} removed from cart`);
+}
+
+// Toggle cart visibility
+function toggleCart() {
+    const cartModal = document.getElementById('cartModal');
+    if (cartModal.style.display === 'block') {
+        cartModal.style.display = 'none';
+    } else {
+        cartModal.style.display = 'block';
+        updateCartDisplay();
+    }
+}
+
+// Close cart when clicking outside
+window.onclick = function(event) {
+    const cartModal = document.getElementById('cartModal');
+    if (event.target === cartModal) {
+        cartModal.style.display = 'none';
+    }
+}
+
+// Show checkout modal
+function checkout() {
+    if (cart.length === 0) return;
+    
+    document.getElementById('checkoutModal').style.display = 'flex';
+}
+
+// Close checkout modal
+function closeCheckout() {
+    document.getElementById('checkoutModal').style.display = 'none';
+}
+
+// Send order via WhatsApp
+function sendWhatsAppOrder() {
+    const name = document.getElementById('customerName').value.trim();
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    const instructions = document.getElementById('specialInstructions').value.trim();
+    
+    // Validate inputs
+    if (!name || !phone || !address) {
+        alert('Please fill in all required fields (Name, Phone, Address)');
+        return;
+    }
+    
+    if (phone.length !== 10 || isNaN(phone)) {
+        alert('Please enter a valid 10-digit phone number');
+        return;
+    }
+    
+    // Create order message
+    let message = `*NEW ORDER - LOCAL BOY DELIVERY*\n\n`;
+    message += `*Customer Details:*\n`;
+    message += `Name: ${name}\n`;
+    message += `Phone: ${phone}\n`;
+    message += `Address: ${address}\n`;
+    
+    if (instructions) {
+        message += `Instructions: ${instructions}\n`;
+    }
+    
+    message += `\n*Order Details:*\n`;
+    
+    cart.forEach((item, index) => {
+        const itemTotal = item.price * item.quantity;
+        message += `${index + 1}. ${item.name} - ${item.quantity} × ₹${item.price} = ₹${itemTotal}\n`;
+    });
+    
+    message += `\n*Total Amount: ₹${cartTotal}*\n`;
+    message += `\n_Order placed via LOCAL BOY DELIVERY Website_`;
+    
+    // Encode message for URL
+    const encodedMessage = encodeURIComponent(message);
+    
+    // Create WhatsApp URL
+    const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in new tab
+    window.open(whatsappURL, '_blank');
+    
+    // Clear cart and close modals
+    cart = [];
+    updateCartDisplay();
+    closeCheckout();
+    toggleCart();
+    
+    // Reset form
+    document.getElementById('customerName').value = '';
+    document.getElementById('customerPhone').value = '';
+    document.getElementById('deliveryAddress').value = '';
+    document.getElementById('specialInstructions').value = '';
+    
+    // Show success message
+    showNotification('Order placed successfully! Check WhatsApp.');
+}
+
+// Search functionality
+function searchItems() {
+    const searchInput = document.getElementById('searchInput').value.toLowerCase();
+    const menuItems = document.querySelectorAll('.menu-item');
+    
+    menuItems.forEach(item => {
+        const itemName = item.querySelector('h4').textContent.toLowerCase();
+        const itemDesc = item.querySelector('p').textContent.toLowerCase();
+        
+        if (itemName.includes(searchInput) || itemDesc.includes(searchInput)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
+}
+
+// Filter by category
+function filterCategory(category) {
+    // This is a simple implementation
+    // You can expand this based on your actual data structure
+    alert(`Filtering by ${category} category. This feature can be expanded with actual data filtering.`);
+}
+
+// Show notification
+function showNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.className = 'notification';
+    notification.textContent = message;
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        z-index: 10000;
+        animation: slideInRight 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 300);
+    }, 3000);
+}
+
+// Add CSS for notification animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize cart display on page load
+document.addEventListener
